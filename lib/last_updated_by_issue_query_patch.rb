@@ -7,7 +7,7 @@ module LastUpdatedByIssueQueryPatch
 
 			base.add_available_column(QueryColumn.new(:last_updated_by_name,
 				:caption => :label_last_updated_by,
-				:sortable => "(select CONCAT_WS(' ', u.firstname, u.lastname) from #{Journal.table_name} as j1 inner join #{User.table_name} as u on u.id = j1.user_id where journalized_type = 'Issue' and journalized_id = #{Issue.table_name}.id order by j1.id DESC limit 1)"
+				:sortable => "(select u.firstname from #{Journal.table_name} as j1 inner join #{User.table_name} as u on u.id = j1.user_id where journalized_type = 'Issue' and journalized_id = #{Issue.table_name}.id order by j1.id DESC limit 1)"
 			))
 		end
 
